@@ -5,6 +5,5 @@ from bookspire.models import User, Book, Review
 
 @app.route("/")
 def home():
-    return "Hello world"
-
+    return render_template("base.html")
 
