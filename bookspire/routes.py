@@ -5,5 +5,6 @@ from bookspire.models import User, Book, Review
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    books = list(Book.query.order_by(Book.id).all())
+    return render_template("index.html", books=books)
 
