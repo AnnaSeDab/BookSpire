@@ -21,8 +21,9 @@ class Book(db.Model):
     author = db.Column(db.String(20), nullable=False)
     year_of_publication = db.Column(db.Integer, nullable=False)
     synopsis = db.Column(db.Text, nullable=False)
-    score = db.Column(db.Integer, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
+    score = db.Column(db.Integer, nullable=False, default=0)
+    genre = db.Column(db.String, nullable=False)
+    username = db.Column(db.String, db.ForeignKey("user.username", ondelete="CASCADE"), nullable=False)
     cover = db.Column(db.String, nullable=False)
     reviews = db.relationship("Review", backref="book", cascade="all, delete", lazy=True)
 
@@ -36,10 +37,10 @@ class Book(db.Model):
 class Review(db.Model):
     # schema for the Review model
     id = db.Column(db.Integer, primary_key=True)
-    book_id = db.Column(db.Integer, db.ForeignKey("book.id", ondelete="CASCADE"), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
+    book_title = db.Column(db.String, db.ForeignKey("book.title", ondelete="CASCADE"), nullable=False)
+    username = db.Column(db.String, db.ForeignKey("user.username", ondelete="CASCADE"), nullable=False)
     review_text = db.Column(db.Text, nullable=False)
-    score = db.Column(db.Integer, nullable=False)
+    review_score = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         # __repr__ to represent itself in the form of a string
