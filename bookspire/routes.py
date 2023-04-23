@@ -1,7 +1,6 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from bookspire import app, db
 from bookspire.models import User, Book, Review
-from werkzeug.security import generate_password_hash, check_password_hash
 
 
 @app.route("/")
@@ -29,4 +28,27 @@ def add_book():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        # Check  if username already exists
+        existing_user = User.query.filter(
+            User.username == request.form.get("username").lower()).all()
+
+        # If username exists - flash message & reload register page
+        if existing_user:
+            flash("This username already exists, please try another username.")
+            return redirect(url_for("register"))
+
+        # If username doesn't exist
+        newuser = User(
+            username=request.form.get("username").lower(),
+            password=request.form.get("password"),
+        )
+        # Add to database
+        db.session.add(newuser)
+        db.session.commit()
+
+        # Add the user to the session and redirect to the login page
+        flash('Registration successful!')
+        return redirect(url_for('login'))
+
     return render_template("register.html")
