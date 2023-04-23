@@ -38,6 +38,19 @@
         <img id="hero-image" src="{{ url_for('static', filename='img/book.jpg') }}" alt="Row of old book covers">
 	</header>
 
+    <!-- flash mesages -->
+    <div class="text-center">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row flashes">
+                        <h4>{{ message }}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
     <!--content block-->
     <main class="container">
         {% block content %}
