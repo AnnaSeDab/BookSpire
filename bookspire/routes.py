@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from bookspire import app, db
 from bookspire.models import User, Book, Review
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 @app.route("/")
