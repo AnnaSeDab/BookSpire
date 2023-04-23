@@ -26,3 +26,7 @@ def add_book():
         db.session.commit()
         return redirect(url_for("home"))
     return render_template("add_book.html")
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    return render_template("register.html")
