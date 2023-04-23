@@ -7,7 +7,7 @@ class User(db.Model):
     username = db.Column(db.String(15), unique=True, nullable=False)
     password = db.Column(db.String(15), unique=True, nullable=False)
     books = db.relationship("Book", backref="user", cascade="all, delete", lazy=True)
-    reviews = db.relationship("Review", backref="book", cascade="all, delete", lazy=True)
+    reviews = db.relationship("Review", backref="user", cascade="all, delete", lazy=True)
 
     def __repr__(self):
         # __repr__ to represent itself in the form of a string
