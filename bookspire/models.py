@@ -5,7 +5,7 @@ class User(db.Model):
     # schema for the User model
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(15), unique=True, nullable=False)
-    password = db.Column(db.String(15), nullable=False)
+    password = db.Column(db.String, nullable=False)
     books = db.relationship("Book", backref="user", cascade="all, delete", lazy=True)
     reviews = db.relationship("Review", backref="user", cascade="all, delete", lazy=True)
 

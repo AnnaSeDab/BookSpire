@@ -1,6 +1,7 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, session
 from bookspire import app, db
 from bookspire.models import User, Book, Review
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 @app.route("/")
@@ -26,6 +27,7 @@ def add_book():
         return redirect(url_for("home"))
     return render_template("add_book.html")
 
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -41,7 +43,7 @@ def register():
         # If username doesn't exist
         newuser = User(
             username=request.form.get("username").lower(),
-            password=request.form.get("password"),
+            password=generate_password_hash(request.form.get("password")),
         )
         # Add to database
         db.session.add(newuser)
