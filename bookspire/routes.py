@@ -17,7 +17,8 @@ def add_book():
             author=request.form.get("author"),
             year_of_publication=request.form.get("year_of_publication"),
             synopsis=request.form.get("synopsis"),
-            user_id=request.form.get("user_id"),
+            genre=request.form.get("genre"),
+            username=request.form.get("username"),
             cover=request.form.get("cover"),
         )
         db.session.add(book)
