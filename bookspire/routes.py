@@ -89,3 +89,10 @@ def login():
 
     return render_template("login.html")
 
+
+@app.route("/logout")
+# logs out user and flashed the message and redirect user to homepage
+def logout():
+    session.pop("user")
+    flash("You have been logged out.")
+    return render_template("index.html")
