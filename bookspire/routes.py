@@ -45,13 +45,16 @@ def register():
             username=request.form.get("username").lower(),
             password=generate_password_hash(request.form.get("password")),
         )
-        # Add to database
+        # Add to database let user know they are registered
         db.session.add(newuser)
         db.session.commit()
-
-        # Add the user to the session and redirect to the login page
         flash('Registration successful!')
-        return redirect(url_for('login'))
+
+        # Add the user to the session and redirect to the main page
+        session["user"] = request.form.get("username").lower()
+        flash("Welcome, {}. You are now logged in!".format(
+            request.form.get("username").capitalize()))
+        return redirect(url_for("home"))
 
     return render_template("register.html")
 
@@ -62,7 +65,10 @@ def login():
         existing_user = User.query.filter(
             User.username == request.form.get("username").lower()).all()
 
+        # checks if username exists
         if existing_user:
+
+            # checks if password matches then logs in user
             if check_password_hash(
                     existing_user[0].password,
                     request.form.get("password")):
@@ -70,14 +76,15 @@ def login():
                 flash("Welcome, {}".format(
                     request.form.get("username").capitalize()))
                 return redirect(url_for("home"))
+                flash('You are now logged in!')
 
+            # invalid password
             else:
-                # invalid password
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
 
-        else:
-            # username doesn't exist
+        # username doesn't exist
+        else:   
             flash("Incorrect Username and/or Password")
 
     return render_template("login.html")
