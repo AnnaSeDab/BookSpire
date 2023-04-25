@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align">Edit Book</h3>
+
+
+<!-- form -->
+<div class="row card-panel grey lighten-5">
+  <form class="col s12" method="POST" action="{{ url_for('edit_book', book_id=book.id) }}">
+
+    <!-- book title -->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
+        <input id="title" name="title" minlength="5" maxlength="50" type="text" class="validate" value="{{ book.title }}" required>
+        <label for="title">Title</label>
+      </div>
+    </div>
+
+    <!-- author -->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+        <input id="author" name="author" minlength="5" maxlength="20" type="text" class="validate" value="{{ book.author }}" required>
+        <label for="author">Author</label>
+      </div>
+    </div>
+
+    <!-- year of publication -->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
+        <input id="year_of_publication" name="year_of_publication" minlength="4" maxlength="4" type="text" class="validate" value="{{ book.year_of_publication }}" required>
+        <label for="year_of_publication">Year of Publication</label>
+      </div>
+    </div>
+
+    <!-- synopsis -->
+    <div class="row">
+        <div class="input-field col s12">
+            <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+            <textarea id="synopsis" name="synopsis" minlength="200" maxlength="2000"
+                type="text" class="materialize-textarea validate" required>{{ book.synopsis }}</textarea>
+            <label for="synopsis">Synopsis</label>
+        </div>
+    </div>
+
+    <!-- genre -->
+    <div class="row">
+      <div class="input-field col s12">
+        <select id="genre" name="genre">
+          <option value="1">Fantasy</option>
+          <option value="2">Science Fiction</option>
+          <option value="3">Biography</option>
+          <option value="4">Mystery</option>
+          <option value="5">Essays</option>
+          <option value="6">Other</option>
+        </select>
+        <label for="genre">Genre</label>
+      </div>
+    </div>
+
+    <!-- link to cover -->
+    <div class="row">
+        <div class="input-field col s12">
+          <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+          <input id="cover" name="cover" type="text" class="validate" value="{{ book.cover }}"required>
+          <label for="cover">Link to cover</label>
+        </div>
+    </div>
+    
+   <!-- submit button -->
+    <div class="row">
+      <div class="col s12 center-align">
+        <button type="submit" class="btn-large light-blue darken-1"> Edit book <i class="fas fa-plus-square right"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

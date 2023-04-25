@@ -113,3 +113,21 @@ def delete_book(book_id):
     db.session.commit()
     flash('Book has been deleted!')
     return redirect(url_for("home"))
+
+
+@app.route("/edit_book/<int:book_id>", methods=["GET", "POST"])
+def edit_book(book_id):
+    book = Book.query.get_or_404(book_id)
+    if request.method == "POST":
+        book.title = request.form.get("title")
+        book.author = request.form.get("author")
+        book.year_of_publication = request.form.get("year_of_publication")
+        book.synopsis = request.form.get("synopsis")
+        book.genre = request.form.get("genre")
+        book.cover = request.form.get("cover")
+        db.session.commit()
+        return redirect(url_for("home"))
+
+    #renders template with specific book's details loaded in
+    return render_template("edit_book.html", book=book)
+
