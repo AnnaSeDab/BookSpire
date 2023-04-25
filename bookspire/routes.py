@@ -103,3 +103,13 @@ def logout():
 def book(book_id):
     book = Book.query.get_or_404(book_id)
     return render_template("book.html", book=book)
+
+
+@app.route("/delete_book/<int:book_id>")
+#deletes book
+def delete_book(book_id):
+    book = Book.query.get_or_404(book_id)
+    db.session.delete(book)
+    db.session.commit()
+    flash('Book has been deleted!')
+    return redirect(url_for("home"))

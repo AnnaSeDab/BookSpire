@@ -28,14 +28,16 @@
     <div class="card col s12 m6 l3">
         <div class="card-image waves-effect waves-block waves-light">
             <img class="activator" src="{{ book.cover }}">
+            <a class="btn-floating waves-effect waves-light white" href="{{ url_for('delete_book', book_id=book.id) }}"><i class="fa-solid fa-trash brown-text text-darken-4"></i></a>
         </div>
         <div class="card-content">
             <h5><a href="{{ url_for('book', book_id=book.id) }}">{{ book.title }}</a></h5>
             <span class="card-title activator grey-text text-darken-4">{{ book.author }}</span>
+            
         </div>
         <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">{{ book.title }}<i class="material-icons right">close</i></span>
-            <p>{{ book.synopsi }}</p>
+            <p>{{ book.synopsis }}</p>
         </div>
     </div>
     {% endfor %}
