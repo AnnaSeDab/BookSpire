@@ -97,3 +97,9 @@ def logout():
     session.pop("user")
     flash("You have been logged out.")
     return render_template("index.html")
+
+
+@app.route("/book/<int:book_id>")
+def book(book_id):
+    book = Book.query.get_or_404(book_id)
+    return render_template("book.html", book=book)
