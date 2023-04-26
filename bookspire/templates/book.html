@@ -1,6 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3>Book {{ book.title }}</h3>
+<h3>{{ book.title }}</h3>
+
+<div class="grey lighten-2">
+    <div class="row">
+        <div class="col s12 m6 l3">
+            <p>cover</p>
+        </div>
+        <div class="col s12 m6 l3">
+            <p>info</p>
+        </div>
+        <div class="col s12 m12 l6">
+            <p>synopsis</p>
+        </div>
+    </div>
+</div>
+
+<hr>
+<div class="grey lighten-2">
+    <div class="row">
+        <div class="col s10">
+            <p>review title</p>
+        </div>
+        <div class="col s1">
+            <p><i class="fa-solid fa-pen-to-square brown-text text-darken-4"></i></p>
+        </div>
+        <div class="col s1">
+            <p><i class="fa-solid fa-trash brown-text text-darken-4"></i></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <p>review body</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col right-align s12">
+            <p>score</p>
+        </div>        
+    </div>
+</div>
+
 
 {% endblock %}
