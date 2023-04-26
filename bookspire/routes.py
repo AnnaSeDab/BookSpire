@@ -146,6 +146,6 @@ def add_review(book_id):
         )
         db.session.add(review)
         db.session.commit()
-        return redirect(url_for("book(book_id)"))
+        return redirect(url_for("home"))
 
-    return render_template("add_review.html")
+    return render_template("add_review.html", book=book)
