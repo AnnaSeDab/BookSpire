@@ -20,7 +20,7 @@
 </div>
 <hr>
 <div class="container center-align">
-    <a class="waves-effect waves-light brown darken-4 white-text btn">Add review<i class="fa-sharp fa-solid fa-comment-plus"></i></a>
+    <a href="{{ url_for('add_review', book_id=book.id) }}" class="waves-effect waves-light brown darken-4 white-text btn">Add review<i class="fa-sharp fa-solid fa-comment-plus"></i></a>
 </div>
 <hr>
 <!-- rewiews -->

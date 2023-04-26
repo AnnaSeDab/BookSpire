@@ -133,3 +133,19 @@ def edit_book(book_id):
     #renders template with specific book's details loaded in
     return render_template("edit_book.html", book=book)
 
+
+@app.route("/add_review/<int:book_id>", methods=["GET", "POST"])
+def add_review(book_id):
+    book = Book.query.get_or_404(book_id)
+    if request.method == "POST":
+        review = Review(
+            review_text=request.form.get("review_text"),
+            review_score=request.form.get("int:review_score"),
+            book_title=book.title,
+            username=session["user"],
+        )
+        db.session.add(review)
+        db.session.commit()
+        return redirect(url_for("book(book_id)"))
+
+    return render_template("add_review.html")
