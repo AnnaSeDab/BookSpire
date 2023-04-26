@@ -20,6 +20,9 @@
 </div>
 
 <hr>
+<!-- rewiews -->
+{% for review in reviews %}
+{% if review.id == book.book_id %}
 <div class="grey lighten-2">
     <div class="row">
         <div class="col s10">
@@ -43,6 +46,7 @@
         </div>        
     </div>
 </div>
-
+{% endif %}
+{% endfor %}
 
 {% endblock %}
