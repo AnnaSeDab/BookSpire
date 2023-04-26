@@ -101,8 +101,10 @@ def logout():
 
 @app.route("/book/<int:book_id>")
 def book(book_id):
+    # loads in data about selected book with given id and list all reviews
     book = Book.query.get_or_404(book_id)
-    return render_template("book.html", book=book)
+    reviews = list(Review.query.all())
+    return render_template("book.html", book=book, reviews=reviews)
 
 
 @app.route("/delete_book/<int:book_id>")
