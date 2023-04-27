@@ -29,7 +29,7 @@
     <div class="grey lighten-2">
         <div class="row">
             <div class="col s10">
-                <p>review title</p>
+                <p>{{ review.title }}</p>
             </div>
             <div class="col s1">
                 <p><i class="fa-solid fa-pen-to-square brown-text text-darken-4"></i></p>
@@ -40,12 +40,25 @@
         </div>
         <div class="row">
             <div class="col s12">
-                <p>review body</p>
+                <p>{{ review.review_text }}</p>
             </div>
         </div>
         <div class="row">
             <div class="col right-align s12">
-                <p>score</p>
+                <p>Score: </p>
+                    {% if review.review_score == 1 %}
+                        <img class="star-image" src="{{ url_for('static', filename='img/one-star.png') }}" alt="one">
+                    {% elif review.review_score == 2 %}
+                        <img class="star-image" src="{{ url_for('static', filename='img/two-stars.png') }}" alt="two stars">
+                    {% elif review.review_score == 3 %}
+                        <img class="star-image" src="{{ url_for('static', filename='img/three-stars.png') }}" alt="three stars">
+                    {% elif review.review_score == 4 %}
+                        <img class="star-image" src="{{ url_for('static', filename='img/four-stars.png') }}" alt="four stars">
+                    {% elif review.review_score == 5 %}
+                        <img class="star-image" src="{{ url_for('static', filename='img/five-stars.png') }}" alt="five stars">
+                    {% else %}
+                        <img class="star-image" src="{{ url_for('static', filename='img/zero-stars.png') }}" alt="zero stars">
+                    {% endif %}
             </div>        
         </div>
     </div>
