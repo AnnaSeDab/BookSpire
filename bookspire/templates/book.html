@@ -25,31 +25,31 @@
 <hr>
 <!-- rewiews -->
 {% for review in reviews %}
-{% if review.id == book.book_id %}
-<div class="grey lighten-2">
-    <div class="row">
-        <div class="col s10">
-            <p>review title</p>
+    {% if review.book_title == book.title %}
+    <div class="grey lighten-2">
+        <div class="row">
+            <div class="col s10">
+                <p>review title</p>
+            </div>
+            <div class="col s1">
+                <p><i class="fa-solid fa-pen-to-square brown-text text-darken-4"></i></p>
+            </div>
+            <div class="col s1">
+                <p><i class="fa-solid fa-trash brown-text text-darken-4"></i></p>
+            </div>
         </div>
-        <div class="col s1">
-            <p><i class="fa-solid fa-pen-to-square brown-text text-darken-4"></i></p>
+        <div class="row">
+            <div class="col s12">
+                <p>review body</p>
+            </div>
         </div>
-        <div class="col s1">
-            <p><i class="fa-solid fa-trash brown-text text-darken-4"></i></p>
+        <div class="row">
+            <div class="col right-align s12">
+                <p>score</p>
+            </div>        
         </div>
     </div>
-    <div class="row">
-        <div class="col s12">
-            <p>review body</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col right-align s12">
-            <p>score</p>
-        </div>        
-    </div>
-</div>
-{% endif %}
+    {% endif %}
 {% endfor %}
 
 {% endblock %}
