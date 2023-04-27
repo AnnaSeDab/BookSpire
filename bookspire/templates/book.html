@@ -44,8 +44,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col right-align s12">
-                <p>Score: </p>
+            <div class="col right-align s12 score-text">
                     {% if review.review_score == 1 %}
                         <img class="star-image" src="{{ url_for('static', filename='img/one-star.png') }}" alt="one">
                     {% elif review.review_score == 2 %}

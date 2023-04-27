@@ -28,3 +28,7 @@ main {
 .grid-container {
     grid-gap: 50px;
   }
+
+.star-image {
+    width:150px;
+}
