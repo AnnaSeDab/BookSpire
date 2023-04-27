@@ -139,13 +139,14 @@ def add_review(book_id):
     book = Book.query.get_or_404(book_id)
     if request.method == "POST":
         review = Review(
-            review_text=request.form.get("review_text"),
-            review_score=request.form.get("int:review_score"),
             book_title=book.title,
+            review_text=request.form.get("review_text"),
+            review_score=request.form.get("review_score"),
             username=session["user"],
         )
+        book.score = book.score + int(review.review_score)
         db.session.add(review)
         db.session.commit()
         return redirect(url_for("home"))
-
+        
     return render_template("add_review.html", book=book)
