@@ -24,17 +24,20 @@
     </div>
     <!-- score -->
     <div class="row"></div>
-    <div class="input-field col s12">
-      <select class="icons" id="review_score" name="review_score">
-        <option value="" disabled selected>Give a score</option>
-        <option value="5" data-icon=""></option>
-        <option value="4" data-icon=""></option>
-        <option value="3" data-icon=""></option>
-        <option value="2" data-icon=""></option>
-        <option value="1" data-icon=""></option>
-        <option value="0" data-icon=""></option>
-      </select>
-      <label for="review_score"></label>
+      <div class="col s6">
+        <p>Would you recommend?</p>
+      </div>
+      <div class="col s3">
+        <label for="yes">
+          <input name="review_score" value="1" id="yes" name="review_score" type="radio"/>
+          <span>Yes</span>
+        </label>
+      </div> 
+      <div class="col s3">
+        <label for="no">
+          <input name="review_score" value="0" id="no" name="review_score" type="radio"/>
+          <span>No</span>
+        </label>
     </div>
 </div>
 <!-- submit button -->
