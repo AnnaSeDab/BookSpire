@@ -140,6 +140,7 @@ def add_review(book_id):
     if request.method == "POST":
         review = Review(
             book_id=book.id,
+            review_title=request.form.get("review_title"),
             review_text=request.form.get("review_text"),
             review_score=request.form.get("review_score"),
             username=session["user"],

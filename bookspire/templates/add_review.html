@@ -6,12 +6,12 @@
 <!-- form -->
 <div class="row card-panel grey lighten-5">
   <form class="col s12" method="POST" action="{{ url_for('add_review', book_id=book.id) }}">
-    <!-- book title -->
+    <!-- review title -->
     <div class="row">
       <div class="input-field col s12">
         <i class="fa-solid fa-circle-exclamation prefix brown-text text-darken-4"></i>
-        <input id="title" name="title" minlength="5" maxlength="50" type="text" class="validate" required>
-        <label for="title">Title</label>
+        <input id="review_title" name="review_title" minlength="5" maxlength="50" type="text" class="validate" required>
+        <label for="review_title">Give your review a headline</label>
       </div>
     </div>
     <!-- review body -->
@@ -19,7 +19,7 @@
       <div class="input-field col s12">
         <i class="fa-solid fa-comment-dots prefix brown-text text-darken-4"></i>
         <textarea id="review_text" name="review_text" minlength="100" type="text" class="materialize-textarea validate" required></textarea>
-        <label for="review_text">Your rview:</label>
+        <label for="review_text">Your rview</label>
       </div>
     </div>
     <!-- score -->
