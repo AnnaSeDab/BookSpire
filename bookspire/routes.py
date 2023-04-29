@@ -151,3 +151,13 @@ def add_review(book_id):
         return redirect(url_for("home"))
         
     return render_template("add_review.html", book=book)
+
+
+@app.route("/delete_revew/<int:review_id>")
+# deletes review
+def delete_review(review_id):
+    review = Review.query.get_or_404(review_id)
+    db.session.delete(review)
+    db.session.commit()
+    flash('Review has been deleted!')
+    return redirect(url_for("home"))
