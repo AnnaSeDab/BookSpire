@@ -37,6 +37,7 @@ class Book(db.Model):
 class Review(db.Model):
     # schema for the Review model
     id = db.Column(db.Integer, primary_key=True)
+    review_tite = db.Column(db.String, nullable=False)
     book_title = db.Column(db.String, db.ForeignKey("book.title", ondelete="CASCADE"), nullable=False)
     username = db.Column(db.String, db.ForeignKey("user.username", ondelete="CASCADE"), nullable=False)
     review_text = db.Column(db.Text, nullable=False)
