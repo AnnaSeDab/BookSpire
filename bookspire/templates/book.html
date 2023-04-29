@@ -42,17 +42,9 @@
         <div class="row">
             <div class="col right-align s12 score-text">
                     {% if review.review_score == 1 %}
-                        <img class="star-image" src="{{ url_for('static', filename='img/one-star.png') }}" alt="one">
-                    {% elif review.review_score == 2 %}
-                        <img class="star-image" src="{{ url_for('static', filename='img/two-stars.png') }}" alt="two stars">
-                    {% elif review.review_score == 3 %}
-                        <img class="star-image" src="{{ url_for('static', filename='img/three-stars.png') }}" alt="three stars">
-                    {% elif review.review_score == 4 %}
-                        <img class="star-image" src="{{ url_for('static', filename='img/four-stars.png') }}" alt="four stars">
-                    {% elif review.review_score == 5 %}
-                        <img class="star-image" src="{{ url_for('static', filename='img/five-stars.png') }}" alt="five stars">
+                        <i class="brown-text text-darken-4 fa-solid fa-thumbs-up"></i>
                     {% else %}
-                        <img class="star-image" src="{{ url_for('static', filename='img/zero-stars.png') }}" alt="zero stars">
+                        <i class="brown-text text-darken-4 fa-solid fa-thumbs-down"></i>
                     {% endif %}
             </div>        
         </div>
