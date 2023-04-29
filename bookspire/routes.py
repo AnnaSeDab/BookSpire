@@ -153,6 +153,20 @@ def add_review(book_id):
     return render_template("add_review.html", book=book)
 
 
+@app.route("/edit_review/<int:review_id>", methods=["GET", "POST"])
+def edit_review(review_id):
+    review = Review.query.get_or_404(review_id)
+    if request.method == "POST":
+        review.review_title = request.form.get("review_title")
+        review.review_text = request.form.get("review_text")
+        reveiw.review_score = request.form.get("review_score")
+        db.session.commit()
+        return redirect(url_for("home"))
+
+    # renders template with specific review details form loaded in
+    return render_template("edit_review.html", review=review)
+
+
 @app.route("/delete_revew/<int:review_id>")
 # deletes review
 def delete_review(review_id):
