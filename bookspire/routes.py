@@ -153,24 +153,29 @@ def add_review(book_id):
     return render_template("add_review.html", book=book)
 
 
-@app.route("/edit_review/<int:review_id>", methods=["GET", "POST"])
-def edit_review(review_id):
+@app.route("/edit_review/<int:book_id>/<int:review_id>", methods=["GET", "POST"])
+def edit_review(review_id, book_id):
     review = Review.query.get_or_404(review_id)
+    book = Book.query.get_or_404(book_id)
+    book.score = book.score - int(review.review_score)
     if request.method == "POST":
         review.review_title = request.form.get("review_title")
         review.review_text = request.form.get("review_text")
-        reveiw.review_score = request.form.get("review_score")
+        review.review_score = request.form.get("review_score")
+        book.score = book.score + int(review.review_score)
         db.session.commit()
         return redirect(url_for("home"))
 
     # renders template with specific review details form loaded in
-    return render_template("edit_review.html", review=review)
+    return render_template("edit_review.html", review=review, book=book)
 
 
-@app.route("/delete_revew/<int:review_id>")
+@app.route("/delete_revew/<int:book_id>/<int:review_id>")
 # deletes review
-def delete_review(review_id):
+def delete_review(review_id, book_id):
     review = Review.query.get_or_404(review_id)
+    book = Book.query.get_or_404(book_id)
+    book.score = book.score - int(review.review_score)
     db.session.delete(review)
     db.session.commit()
     flash('Review has been deleted!')

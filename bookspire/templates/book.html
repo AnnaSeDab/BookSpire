@@ -31,8 +31,8 @@
             <div class="col s12">
                 <p>{{ review.review_title }}</p>
                 {% if session.user|lower == review.username|lower %}
-                <a class="right-align" href="{{ url_for('delete_review', review_id=review.id) }}"><i class="fa-solid fa-trash brown-text text-darken-4"></i></i></a>
-                <p class="right-align"><i class="fa-solid fa-pen-to-square brown-text text-darken-4"></i></p>
+                <a class="right-align" href="{{ url_for('delete_review', book_id=book.id, review_id=review.id) }}"><i class="fa-solid fa-trash brown-text text-darken-4"></i></a>
+                <a class="right-align" href="{{ url_for('edit_review', book_id=book.id, review_id=review.id) }}"><i class="fa-solid fa-pen-to-square  brown-text text-darken-4"></i></a>
                 {% endif %}
             </div>
         </div>
