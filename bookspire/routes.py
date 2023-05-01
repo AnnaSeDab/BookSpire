@@ -96,7 +96,7 @@ def login():
 def logout():
     session.pop("user")
     flash("You have been logged out.")
-    return render_template("index.html")
+    return redirect(url_for("home"))
 
 
 @app.route("/book/<int:book_id>")
