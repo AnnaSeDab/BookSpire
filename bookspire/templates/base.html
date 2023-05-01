@@ -18,10 +18,9 @@
         <a href="#!" class="brand-logo">Logo</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-        <li><a href="">Home</a></li>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
         {% if session.user %}
-        <li><a href="">Books</a></li>
-        <li><a href="">Add Book</a></li>
+        <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
         <li><a href="{{ url_for('logout') }}">Log out</a></li>
         {% else %}
         <li><a href="{{ url_for('login') }}">Log in</a></li>
@@ -32,10 +31,9 @@
     </nav>
     
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="">Home</a></li>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
         {% if session.user %}
-        <li><a href="">Books</a></li>
-        <li><a href="">Add Book</a></li>
+        <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
         <li><a href="{{ url_for('logout') }}">Log out</a></li>
         {% else %}
         <li><a href="{{ url_for('login') }}">Log in</a></li>
