@@ -10,6 +10,12 @@ def home():
     return render_template("index.html", books=books)
 
 
+@app.route("/sorted")
+def sorted():
+    books = list(Book.query.order_by(-Book.score).all())
+    return render_template("index.html", books=books)
+
+
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
     if request.method == "POST":
