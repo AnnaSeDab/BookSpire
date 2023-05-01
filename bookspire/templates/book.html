@@ -30,10 +30,6 @@
         <div class="row">
             <div class="col s12">
                 <p>{{ review.review_title }}</p>
-                {% if session.user|lower == review.username|lower %}
-                <a class="right-align" href="{{ url_for('delete_review', book_id=book.id, review_id=review.id) }}"><i class="fa-solid fa-trash brown-text text-darken-4"></i></a>
-                <a class="right-align" href="{{ url_for('edit_review', book_id=book.id, review_id=review.id) }}"><i class="fa-solid fa-pen-to-square  brown-text text-darken-4"></i></a>
-                {% endif %}
             </div>
         </div>
         <div class="row">
@@ -42,7 +38,26 @@
             </div>
         </div>
         <div class="row">
-            <div class="col right-align s12 score-text">
+            <div class="col left-align s6">
+                {% if session.user|lower == review.username|lower %}
+                <!-- Modal Trigger to delete book-->
+                <a class="modal-trigger" href="#modaldeletereview"><i class="fa-solid fa-trash brown-text text-darken-4"></i></a>
+
+                <!-- Modal Structure -->
+                <div id="modaldeletereview" class="modal">
+                    <div class="modal-content">
+                    <h4>Are you sure you want to delete this review form the database?</h4>
+                    <p>The review will be deleted permanently.</p>
+                    </div>
+                    <div class="modal-footer">
+                    <a href="{{ url_for('delete_review', book_id=book.id, review_id=review.id) }}" class="modal-close waves-effect waves-green btn-flat">Delete review</a>
+                    <a href="#!" class="modal-close waves-effect waves-light btn-flat">Let me think about it</a>
+                    </div>
+                </div>
+                <a href="{{ url_for('edit_review', book_id=book.id, review_id=review.id) }}"><i class="fa-solid fa-pen-to-square  brown-text text-darken-4"></i></a>
+                {% endif %}
+            </div>
+            <div class="col right-align s6 score-text">
                     {% if review.review_score == 1 %}
                         <i class="brown-text text-darken-4 fa-solid fa-thumbs-up"></i>
                     {% else %}
