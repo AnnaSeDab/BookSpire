@@ -15,7 +15,7 @@
      <!--navbar-->
     <nav>
         <div class="nav-wrapper brown lighten-1">
-        <a href="#!" class="brand-logo">Logo</a>
+        <a href="{{ url_for('home') }}" class="brand-logo"><img src="{{ url_for('static', filename='img/Bookspirelogo.png') }}"></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
         <li><a href="{{ url_for('home') }}">Home</a></li>
