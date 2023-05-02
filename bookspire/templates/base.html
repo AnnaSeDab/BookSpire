@@ -13,10 +13,10 @@
 </head>
 <body>
      <!--navbar-->
-    <nav>
+    <nav  id="navigation-bar">
         <div class="nav-wrapper brown lighten-1">
-        <a href="{{ url_for('home') }}" class="brand-logo"><img src="{{ url_for('static', filename='img/Bookspirelogo.png') }}"></a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="{{ url_for('home') }}"><img id="logo" src="{{ url_for('static', filename='img/Bookspirelogo.png') }}"></a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fa-solid fa-bars"></i></a>
         <ul class="right hide-on-med-and-down">
         <li><a href="{{ url_for('home') }}">Home</a></li>
         {% if session.user %}

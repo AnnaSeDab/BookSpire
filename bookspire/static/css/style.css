@@ -32,3 +32,15 @@ main {
 .star-image {
     width:150px;
 }
+
+/* navigation bar */
+
+#logo {
+    height: 70px;
+}
+
+#navigation-bar {
+    height: 80px;
+    padding: 10px;
+    background-color: #8d6e63 !important;
+}
