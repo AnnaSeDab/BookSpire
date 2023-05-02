@@ -50,3 +50,7 @@ main {
 .text-block {
     text-align: justify;
 }
+
+.padded-grid {
+    padding: 10px !important;
+}
