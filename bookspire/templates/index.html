@@ -15,10 +15,10 @@
 <!--sorting and -->
 <div class="row margins">
     <div class="container">   
-        <a href="{{ url_for('sorted') }}" class="waves-effect black-text brown lighten-5 btn col s12 m4 l4">Sort by score</a>
-        <div class="col s12 m4 l4"></div>
+        <a href="{{ url_for('sorted') }}" class="waves-effect white-text brown darken-2 btn col s12 m5 l5">Sort by score</a>
+        <div class="col s12 m2 l2"></div>
         {% if session.user %}
-        <a href="{{ url_for('add_book') }}" class="waves-effect black-text brown lighten-5 btn col s12 m4 l4">Add a book</a>
+        <a href="{{ url_for('add_book') }}" class="waves-effect white-text brown darken-2 btn col s12 m5 l5">Add a book</a>
         {% endif %}
     </div>
 </div>
