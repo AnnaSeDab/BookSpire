@@ -8,6 +8,10 @@ main {
     flex: 1 0 auto;
 }
 
+a {
+    color: #3e2723 ;
+}
+
 /* book cover images */
 
 .cover { 
@@ -46,4 +50,19 @@ main {
 
 .padded-grid {
     padding: 10px !important;
+}
+
+/* book card container */
+
+.centered-icons {
+    text-align: center;
+    margin: 7px;
+}
+
+.card-content-padding {
+    padding: 5px !important;
+}
+
+.centered-elemet {
+    text-align: center;
 }
