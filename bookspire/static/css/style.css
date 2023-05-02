@@ -44,3 +44,9 @@ main {
     padding: 10px;
     background-color: #8d6e63 !important;
 }
+
+/* introduction text */
+
+.text-block {
+    text-align: justify;
+}
