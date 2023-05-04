@@ -56,7 +56,8 @@ a {
 
 .centered-icons {
     text-align: center;
-    margin: 7px;
+    margin-top: 12px;
+    font-size: 20px;
 }
 
 .card-content-padding {
