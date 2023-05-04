@@ -2,66 +2,65 @@
 {% block content %}
 
 <h3 class="center-align">Edit review for {{ book.title }} by {{ book.author }}</h3>
-
 <!-- form -->
 <div class="row card-panel grey lighten-5">
-  <form class="col s12" method="POST" action="{{ url_for('edit_review', review_id=review.id, book_id=book.id) }}">
-    <!-- review title -->
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="fa-solid fa-circle-exclamation prefix brown-text text-darken-4"></i>
-        <input id="review_title" value="{{ review.review_title }}" name="review_title" minlength="5" maxlength="50" type="text" class="validate" required>
-        <label for="review_title"></label>
-      </div>
-    </div>
-    <!-- review body -->
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="fa-solid fa-comment-dots prefix brown-text text-darken-4"></i>
-        <textarea id="review_text" name="review_text" type="text" class="materialize-textarea validate" required>
-          {{- review.review_text -}}
-        </textarea>
-        <label for="review_text"></label>
-      </div>
-    </div>
-    <!-- score -->
-    <div class="row"></div>
-      <div class="col s6">
-        <p>Would you recommend?</p>
-      </div>
-      {% if review.review_score == 1 %}
-      <div class="col s3">
-        <label for="yes">
-          <input name="review_score" value="1" id="yes" name="review_score" type="radio" checked/>
-          <span>Yes</span>
-        </label>
-      </div> 
-      <div class="col s3">
-        <label for="no">
-          <input name="review_score" value="0" id="no" name="review_score" type="radio"/>
-          <span>No</span>
-        </label>
-    </div>
-    {% else %}
-    <div class="col s3">
-      <label for="yes">
-        <input name="review_score" value="1" id="yes" name="review_score" type="radio"/>
-        <span>Yes</span>
-      </label>
-    </div> 
-    <div class="col s3">
-      <label for="no">
-        <input name="review_score" value="0" id="no" name="review_score" type="radio" checked/>
-        <span>No</span>
-      </label>
-  </div>
-    {% endif %}
+    <form class="col s12" method="POST" action="{{ url_for('edit_review', review_id=review.id, book_id=book.id) }}">
+        <!-- review title -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fa-solid fa-circle-exclamation prefix brown-text text-darken-4"></i>
+                <input id="review_title" value="{{ review.review_title }}" name="review_title" minlength="5" maxlength="50" type="text" class="validate" required>
+                <label for="review_title"></label>
+            </div>
+        </div>
+        <!-- review body -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fa-solid fa-comment-dots prefix brown-text text-darken-4"></i>
+                <textarea id="review_text" name="review_text" type="text" class="materialize-textarea validate" required>
+                {{- review.review_text -}}
+                </textarea>
+                <label for="review_text"></label>
+            </div>
+        </div>
+        <!-- score -->
+        <div class="row"></div>
+        <div class="col s6">
+            <p>Would you recommend?</p>
+        </div> 
+        {% if review.review_score == 1 %} 
+        <div class="col s3">
+            <label for="yes">
+                <input name="review_score" value="1" id="yes" type="radio" checked />
+                <span>Yes</span>
+            </label>
+        </div>
+        <div class="col s3">
+            <label for="no">
+                <input name="review_score" value="0" id="no" type="radio" />
+                <span>No</span>
+            </label>
+        </div> 
+        {% else %} 
+        <div class="col s3">
+            <label for="yes">
+                <input name="review_score" value="1" id="yes" type="radio" />
+                <span>Yes</span>
+            </label>
+        </div>
+        <div class="col s3">
+            <label for="no">
+                <input name="review_score" value="0" id="no" type="radio" checked />
+                <span>No</span>
+            </label>
+        </div> 
+        {% endif %}
 </div>
 <!-- submit button -->
 <div class="row">
-  <div class="col s12 center-align">
-    <button type="submit" class="btn-large brown darken-4"> Edit </button>
-  </div>
+    <div class="col s12 center-align">
+        <button type="submit" class="btn-large brown darken-4"> Edit </button>
+    </div>
 </div>
 </form>
 </div>

@@ -1,79 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/01ee20b63d.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-        type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-    <title>Bookspire</title>
-</head>
-<body>
-     <!--navbar-->
-    <nav  id="navigation-bar">
-        <div class="nav-wrapper brown lighten-1">
-        <a href="{{ url_for('home') }}"><img id="logo" src="{{ url_for('static', filename='img/Bookspirelogo.png') }}"></a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fa-solid fa-bars"></i></a>
-        <ul class="right hide-on-med-and-down">
-        <li><a href="{{ url_for('home') }}">Home</a></li>
-        {% if session.user %}
-        <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
-        <li><a href="{{ url_for('logout') }}">Log out</a></li>
-        {% else %}
-        <li><a href="{{ url_for('login') }}">Log in</a></li>
-        <li><a href="{{ url_for('register') }}">Register</a></li>
-        {% endif %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/01ee20b63d.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+        <title>Bookspire</title>
+    </head>
+    <body>
+        <!--navbar-->
+        <nav id="navigation-bar">
+            <div class="nav-wrapper brown lighten-1">
+                <a href="{{ url_for('home') }}">
+                    <img id="logo" src="{{ url_for('static', filename='img/Bookspirelogo.png') }}">
+                </a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                    <i class="fa-solid fa-bars"></i>
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <a href="{{ url_for('home') }}">Home</a>
+                    </li> 
+                    {% if session.user %} 
+                    <li>
+                        <a href="{{ url_for('add_book') }}">Add Book</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('logout') }}">Log out</a>
+                    </li> 
+                    {% else %} 
+                    <li>
+                        <a href="{{ url_for('login') }}">Log in</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('register') }}">Register</a>
+                    </li> 
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <ul class="sidenav" id="mobile-demo">
+            <li>
+                <a href="{{ url_for('home') }}">Home</a>
+            </li> {% if session.user %} <li>
+                <a href="{{ url_for('add_book') }}">Add Book</a>
+            </li>
+            <li>
+                <a href="{{ url_for('logout') }}">Log out</a>
+            </li> {% else %} <li>
+                <a href="{{ url_for('login') }}">Log in</a>
+            </li>
+            <li>
+                <a href="{{ url_for('register') }}">Register</a>
+            </li> {% endif %}
         </ul>
-        </div>
-    </nav>
-    
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="{{ url_for('home') }}">Home</a></li>
-        {% if session.user %}
-        <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
-        <li><a href="{{ url_for('logout') }}">Log out</a></li>
-        {% else %}
-        <li><a href="{{ url_for('login') }}">Log in</a></li>
-        <li><a href="{{ url_for('register') }}">Register</a></li>
-        {% endif %}
-    </ul>
-
-    <!-- Page Header -->
-	<header>
-        <img id="hero-image" src="{{ url_for('static', filename='img/book.jpg') }}" alt="Row of old book covers">
-	</header>
-
-    <!-- flash mesages -->
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
+        <!-- Page Header -->
+        <header>
+            <img id="hero-image" src="{{ url_for('static', filename='img/book.jpg') }}" alt="Row of old book covers">
+        </header>
+        <!-- flash mesages --> 
+        {% with messages = get_flashed_messages() %} 
+            {% if messages %} 
+                {% for message in messages %} 
                 <div class="row flashes">
                     <h4 class="brown lighten-4 center-align">{{ message }}</h4>
+                </div> 
+                {% endfor %} 
+            {% endif %} 
+        {% endwith %}
+        <!--content block-->
+        <main class="container"> 
+            {% block content %} 
+            {% endblock %} 
+        </main>
+        <!--footer-->
+        <footer class="page-footer brown lighten-1">
+            <div class="footer-copyright">
+                <div class="container">
+                    <p class="white-text right">&copy; Anna Dab</p>
                 </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-
-    <!--content block-->
-    <main class="container">
-        {% block content %}
-        {% endblock %}
-    </main>
-
-    <!--footer-->
-    <footer class="page-footer brown lighten-1">
-        <div class="footer-copyright">
-            <div class="container">
-                <a class="white-text right" href="" target="_blank">&copy; Anna Dab</a>
             </div>
-        </div>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
-</body>
+        </footer>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </body>
 </html>
