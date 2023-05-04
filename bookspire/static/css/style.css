@@ -9,25 +9,21 @@ main {
 }
 
 a {
-    color: #3e2723 ;
+    color: #3e2723;
 }
 
 /* book cover images */
 
-.cover { 
+.cover {
     height: 55vh !important;
-    object-fit: fit;
+    object-fit: fill;
 }
 
-#hero-image{
-    height:300px;
+/* hero image on base page */
+#hero-image {
+    height: 300px;
     width: 100%;
     object-fit: cover;
-}
-
-.margins {
-    margin-top: 50px;
-    margin-bottom: 50px;
 }
 
 /* navigation bar */
@@ -46,13 +42,15 @@ a {
 
 .text-block {
     text-align: justify;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
+
+/* book card */
 
 .padded-grid {
     padding: 10px !important;
 }
-
-/* book card container */
 
 .centered-icons {
     text-align: center;
