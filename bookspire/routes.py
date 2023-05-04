@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 @app.route("/")
 def home():
-    books = list(Book.query.order_by(Book.id).all())
+    books = list(Book.query.order_by(-Book.id).all())
     return render_template("index.html", books=books)
 
 
