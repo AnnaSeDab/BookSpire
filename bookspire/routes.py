@@ -214,3 +214,9 @@ def delete_review(review_id, book_id):
 @app.errorhandler(404)
 def response_404(exception):
     return render_template('404.html', exception=exception)
+
+
+# exception handler displays 500.html page when 500 is captured
+@app.errorhandler(500)
+def response_500(exception):
+    return render_template('500.html', exception=exception)
