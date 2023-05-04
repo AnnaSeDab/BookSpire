@@ -186,3 +186,9 @@ def delete_review(review_id, book_id):
     db.session.commit()
     flash('Review has been deleted!')
     return redirect(url_for("home"))
+
+
+# exception handler displays 404.html page when 404 is captured
+@app.errorhandler(404)
+def response_404(exception):
+    return render_template('404.html', exception=exception)
