@@ -322,7 +322,7 @@ Page and database are ready to use.
 ## Credits
 
 
-The code was written by me. I was basing it on the Code Institute walk through project for understanding of CRUD functionality and user log in.
+The code was written by me with use of Materialize framework. I was basing it on the Code Institute walk through project for understanding of CRUD functionality and user log in.
 
 
 
