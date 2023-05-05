@@ -168,12 +168,13 @@ def add_review(book_id):
             book.score = book.score + int(review.review_score)
             db.session.add(review)
             db.session.commit()
-            return redirect(url_for("home"))  
+            return redirect(url_for("home"))
         return render_template("add_review.html", book=book)
-    return redirect(url_for("home"))  
+    return redirect(url_for("home"))
 
 
-@app.route("/edit_review/<int:book_id>/<int:review_id>", methods=["GET", "POST"])
+@app.route("/edit_review/<int:book_id>/<int:review_id>", methods=[
+    "GET", "POST"])
 def edit_review(review_id, book_id):
     review = Review.query.get_or_404(review_id)
     book = Book.query.get_or_404(book_id)
