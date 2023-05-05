@@ -195,21 +195,19 @@ Schema:
 ## Testing
 
 
-W3C HTML Validation Service was used to validate HTML.
-
-
+W3C HTML Validation Service was used to validate HTML all the pages were checked through URL and showed no problems
 
 
 ![HTML validator](bookspire/static/img/html_validator.png)
 
 
-CSS was validated without any problems
+CSS was validated through W3C CSS Validation Service without any problems
 
 
 ![CSS validator](bookspire/static/img/CSS_validator.png)
 
 
-Python code was validated with no problems
+Python code was validated with no problems through Pep8CI
 
 
 ![Pep8CI validator](bookspire/static/img/Pep8CI_validator.png)
