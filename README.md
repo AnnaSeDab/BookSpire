@@ -170,7 +170,7 @@ Schema:
  * Canva - Used to create wireframes and logo
  * Pixabay - Used to source hero image
  * Wikipedia - Used to source book cover pictures and book synopsis description
- * Github - Used as a repository
+ * Github - GitHub for versionn control for the development of application up to deployment
  * Gitpod -An online IDE used to build and develop the website
  * Heroku- The cloud platform used to host the deployed site
  * Slack - Used during development and testing to find the solutions for the encountered problems
@@ -224,16 +224,19 @@ Create
 
 It is possible to create User, Book and Review.
 To create Book and Review the user has to be logged in.
-
-
+Book title needs to be unique so there are no doubled entries.
+Some fields are restricted to certain inputs
+- year of publication - four digits
+- cover image link needs to start with http:// or https://
+- synopsis must contain at least 200 characters
 User - unique username needs to be provided. Passwords need to be at least 5 characters long.
-Book - form
 
 
 Read
 
 
-Books and reviews load in.
+Books and reviews load onto page regardles if user is logged in or not. 
+All the changes made(Add, Edit, Delete) are immediately reflected on the page.
 Books are displayed from the newest to oldest. It is also possible to sort them by the number of positive reviews.
 
 
