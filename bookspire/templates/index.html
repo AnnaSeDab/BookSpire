@@ -25,7 +25,7 @@
     {% for book in books %} 
     <div class="card col s12 m6 l3 padded-grid">
         <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator cover" alt="book cover" src="{{ book.cover }}">
+            <img class="activator cover" alt="book cover " src="{{ book.cover }}">
         </div>
         <!-- delete and edit button --> 
         {% if session.user|lower == book.username|lower %} 
