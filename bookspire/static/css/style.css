@@ -12,6 +12,14 @@ a {
     color: #3e2723;
 }
 
+.courgette-font {
+    font-family: 'Courgette', cursive;
+}
+
+.ms-madi-font {
+    font-family: 'Ms Madi', cursive;
+}
+
 /* book cover images */
 
 .cover {

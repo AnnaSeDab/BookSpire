@@ -3,8 +3,8 @@
 
 <!--page description-->
 <div class="text-block centered-elemet container">
-    <h4>Welcome to Bookspire</h4>
-    <span>
+    <h1 class="ms-madi-font">Welcome to Bookspire</h1>
+    <span class="courgette-font">
         If you love reading books and sharing that joy with others, this is a place for you.<br>
         Add and review books.<br>
         Look for inspiration. <br>
@@ -45,7 +45,7 @@
         </div> 
         {% endif %} 
         <div class="centered-elemet card-content-padding">
-            <h5 class="brown-text text-darken-4">
+            <h5 class="brown-text courgette-font text-darken-4">
                 <a href="{{ url_for('book', book_id=book.id) }}">{{ book.title }}</a>
             </h5>
             <span class="card-title brown-text text-darken-4">{{ book.author }}</span>
