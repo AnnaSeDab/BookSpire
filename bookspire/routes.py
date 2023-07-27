@@ -7,14 +7,21 @@ from werkzeug.security import generate_password_hash, check_password_hash
 @app.route("/")
 # renders template for homepage
 def home():
-    books = list(Book.query.order_by(-Book.id).all())
+    books = list(Book.query.order_by(Book.id).all())
     return render_template("index.html", books=books)
 
 
-@app.route("/sorted")
+@app.route("/sort_by_score")
 # sorts book by their score
-def sorted():
+def sort_by_score():
     books = list(Book.query.order_by(-Book.score).all())
+    return render_template("index.html", books=books)
+
+
+@app.route("/sort_by_newest")
+# renders template for homepage
+def sort_by_newest():
+    books = list(Book.query.order_by(-Book.id).all())
     return render_template("index.html", books=books)
 
 
