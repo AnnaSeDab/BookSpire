@@ -20,6 +20,8 @@
         <div class="col s12 m1 l1"></div> 
         {% if session.user %} 
         <a href="{{ url_for('add_book') }}" class="waves-effect white-text brown darken-2 btn col s12 m3 l3">Add a book</a> 
+        {% else %}
+        <a href="{{ url_for('login') }}" class="waves-effect white-text brown darken-2 btn col s12 m3 l3">Log in to add</a>
         {% endif %}
     </div>
 </div>
