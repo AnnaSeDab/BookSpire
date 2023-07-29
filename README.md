@@ -31,7 +31,15 @@ As a User I would like to:
 - review books to recommend them to other users
 - read reviews and find good books to read
 
+### Page owner goals
 
+As an owner of this page I would like to:
+
+- build the database of books and reviews by:
+- adding them myself
+- have users add books and reviews
+- attract more users by making the page useful to them (the more information it consists the more useful it gets)
+- eventually link up amazon and gain profit through affiliate links
 
 ### Developer goals
 
@@ -45,7 +53,7 @@ Allow users to easily:
 - delete books they added
 - add reviews to books and give thumbs up to the ones they would recommend
 - edit and delete the reviews they added
-- find books worth reading by sorting them in order starting from he ones with the most positive reviews
+- find books worth reading by sorting them in order starting from the ones with the most positive reviews or the ones added most recently
 
 
 
