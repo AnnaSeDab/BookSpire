@@ -8,7 +8,7 @@
 ## Mockup
 
 
-![Mockup of the Bookspire website viewed on a desktop, tablet and mobile device](bookspire/static/img/mockup.png)
+![Mockup of the Bookspire website viewed on a desktop, tablet and mobile device](bookspire/static/img/mockup.webp)
 
 
 ## UI/UX
@@ -275,8 +275,8 @@ Books are displayed from the newest to oldest. It is also possible to sort them 
 
 | Test        | Expected outcome | Result |
 | ----------- | ----------- |--------- |
-| View homepage while logged in | All the books are showing. Ones added by the user logged in have edit and delete buttons next to them. | Passed |
-| View homepage while not logged in | All the books are showing. No edit and delete buttons next to them. | Passed |
+| View homepage while logged in | All the books are showing. Ones added by the user logged in have edit and delete buttons next to them. Scores display correctly with only th positive reviews giving a point. | Passed |
+| View homepage while not logged in | All the books are showing. No edit and delete buttons next to them. Scores display correctly with only th positive reviews giving a point. | Passed |
 | View Book page while logged in | All the reviews are showing. Ones added by the user logged in have edit and delete review buttons next to them. | Passed |
 | View Book page while not logged in | All the books are showing. No edit and delete buttons next to the reviews. | Passed |
 | Click Sort by score button on the main page | Books with the most positive reviews show first. | Passed |
@@ -320,7 +320,7 @@ Delete buttons show only by the books added by the logged in user.
 Delete review show only by the books added by the logged in user.
 If someone tries to delete book they are not an author of page will throw an error (see tests in guarding from forced actions section).
 If the books get deleted all the reviews are deleted with it.
-Option to delete a user has not been added. This is one of the features a Bookstore would need. Scheema is set up in the way that deletion of user would cause deletion of all the books and reviews added by them.
+Option to delete a user has not been added. This is one of the features a Bookstore would need. Scheema is set up in the way that deletion of user would cauHighly recose deletion of all the books and reviews added by them.
 Delete button is currently not guarded by modal as I was not able to fix the bug.
 
 | Test        | Expected outcome | Result |
@@ -366,13 +366,13 @@ Forcing URL to add/edit book or review throws an error if user is not logged in 
 | Force /edit_book/11 url while not logged in | Error 404 page shows. | Passed |
 | Force /delete_book/11 url while not logged in | Error 404 page shows. | Passed |
 | Force /delete_book/11 url while logged in as not the author of the book entry. | Redirected to main page. | Passed |
-| Force /delete_book/11 url while logged in s the author of the book entry | Error 404 page shows. | Passed |
+| Force /delete_book/11 url while logged in s the author of the book entry | Book gets deleted. | Passed |
 | Force /edit_review/11/12 url while not logged in | Error 404 page shows. | Passed |
 | Force /edit_review/11/12 url while logged in as not the author of the review entry. | Redirected to main page. | Passed |
-| Force /edit_review/11/12 url while logged in as the author of the review entry | Error 404 page shows. | Passed |
+| Force /edit_review/11/12 url while logged in as the author of the review entry | User is taken to the edit page. | Passed |
 | Force /delete_review/11/12 url while not logged in | Error 404 page shows. | Passed |
 | Force /delete_review/11/12 url while logged in as not the author of the review entry. | Redirected to main page. | Passed |
-| Force /delete_review/11/12 url while logged in s the author of the review entry | Error 404 page shows. | Passed |
+| Force /delete_review/11/12 url while logged in as the author of the review entry | Review gets deleted. | Passed |
 
 
 **NAVIGATION**
@@ -396,7 +396,7 @@ Forcing URL to add/edit book or review throws an error if user is not logged in 
 | Click on on a title of any book (while not logged in) | Book page opens | Passed |
 | Click on "Add review" button on book page (while logged in as a user who added the book) | Add_review page opens | Passed |
 | Click on "Add review" button on book page (while logged in as a user who didn't add the book) | Add_review page opens | Passed |
-| Click on "Edit review" button on book page (while logged in as a user who added it) | Add_review page opens | Passed |
+| Click on "Edit review" button on book page (while logged in as a user who added it) | Edit_review page opens | Passed |
 | Click on "Delete review" button on book page (while logged in as a user who added it) | Review gets deleted. "Review has been deleted!" message shows. | Passed |
 
 
@@ -405,6 +405,10 @@ Forcing URL to add/edit book or review throws an error if user is not logged in 
 
 Modal adding extra layer of security over delete button:
 The modal would not load book.id/review.id correctly. Books/reviews are displayed using the for loop and modal would take the id of the first object of the loop rather than the one that was clicked.
+
+User not able to log in as password firld was set to max 15 characters in models.py. After attempting to update database. I was told by the tutor it will be easiest to drop and create database again.
+
+Review body had to have more than 50 characters when created but could be shorter when edited. Added minlength="50" attribute to teh from. 
 
 
 ## Deployment
@@ -420,9 +424,6 @@ In ElephantSQL
 
 In IDE workspace
 6. Create requirements.txt file which contains a list of the Python dependencies and a Procfile which contains the start command to run the project
-
-
-
 
 On Heroku
 1. Log into Heroku website
@@ -440,11 +441,9 @@ Adding tables to database
 1. On Heroku page right top corner click more and run console
 2. Run commands:
 
-
 python3 
 from task manager import db   
 db.create_all()
-
 
 Page and database are ready to use.
 
@@ -452,7 +451,7 @@ Page and database are ready to use.
 ## Credits
 
 
-The code was written by me with use of Materialize framework. I was basing it on the Code Institute walk through project for understanding of CRUD functionality and user log in.
+The code was written by me with use of Materialize framework. I was basing it on the Code Institute walk through project for understanding of CRUD functionality and user log in. 
 
 
 
