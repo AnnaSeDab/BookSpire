@@ -14,20 +14,17 @@
 ## UI/UX
 ### Project goals
 
-
 Bookspire is a fictitious book review website.
 The page works as a database and review site for books.
 Users can add books and reviews.
 Sorting mechanism allows users to find the most popular books.
 The more books and reviews are added the more attractive the page is for potential users.
-the page can be then linked to amazon webste to create profit through affiliate links. 
+The page could potentially be then linked to amazon webste to create profit through affiliate links. 
 
 
 ### User Stories
 
-
 As a User I would like to:
-
 
 - log in to feel as a part of book lovers community
 - share my favourite books with and inspire others to read them
@@ -36,12 +33,9 @@ As a User I would like to:
 
 
 
-
 ### Developer goals
 
-
 Allow users to easily:
-
 
 - register to the website
 - log in to the website
@@ -52,7 +46,6 @@ Allow users to easily:
 - add reviews to books and give thumbs up to the ones they would recommend
 - edit and delete the reviews they added
 - find books worth reading by sorting them in order starting from he ones with the most positive reviews
-
 
 
 
@@ -71,7 +64,7 @@ The wireframes for desktop view were developed first then mobile view and respon
 ### Colour Palette
 
 
-Colour palette consists mostly of browns ang harmonises with a picture of old books showing on every page.
+Colour palette consists mostly of browns and harmonises with a picture of old books showing on every page.
 
 
 ![Colour palette](bookspire/static/img/colour_palette.png)
@@ -80,15 +73,17 @@ Colour palette consists mostly of browns ang harmonises with a picture of old bo
 ### Fonts
 
 Font awesome was used to generate icons.
-
+Fonts Ms-Madi and Courgette were imported from google fonts.
+Ms-Madi resembles font used in Bookspire logo and is used on the homepage by Welcome header.
+Courgette font is used for homepage text, headings and book titles.
 
 ## Defensive design
 
 
-Users need to be logged in to be able to add reviews.
+Users need to be logged in to be able to add reviews and books.
 Users can edit and delete only the books and reviews that they created.
 Attempting to force the url to add/edit/delete book or review causes 404 error.
-
+Please see manual tests section for more details.
 
 There is a need to add modal of some sort to protect users from accidentally deleting books or reviews.
 The attempts of achieve that are described in the unsolved bugs section.
@@ -125,11 +120,12 @@ Clicking on the title takes us to a page dedicated to that book where we can see
 
 
 Sorting    
-Books initially display the newest at the top, however, they can also be sorted by number of positive reviews.
+Books initially display the newest at the top, however, they can also be sorted by number of positive reviews or reverted to sorting newest first by clicking respective buttons on the home page.
 
 
 #### When logged in
 
+Users can Read, Sort and Navigate just like the ones who are not logged in.
 
 Create, Update, Delete   
 Users who are logged in can add books and reviews, edit and delete the content they added.
@@ -211,7 +207,6 @@ Python code was validated with no problems through Pep8CI
 
 
 ![Pep8CI validator](bookspire/static/img/Pep8CI_validator.png)
-
 
 
 ### Manual testing
