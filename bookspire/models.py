@@ -5,7 +5,7 @@ class User(db.Model):
     # schema for the User model
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(15), unique=True, nullable=False)
-    password = db.Column(db.String, nullable=False)
+    password = db.Column(db.String(15), nullable=False)
     books = db.relationship("Book", backref="user", cascade="all, delete", lazy=True)
     reviews = db.relationship("Review", backref="user", cascade="all, delete", lazy=True)
 
@@ -17,8 +17,8 @@ class User(db.Model):
 class Book(db.Model):
     # schema for the Book model
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(40), unique=True, nullable=False)
-    author = db.Column(db.String(20), nullable=False)
+    title = db.Column(db.Text, unique=True, nullable=False)
+    author = db.Column(db.Text, nullable=False)
     year_of_publication = db.Column(db.Integer, nullable=False)
     synopsis = db.Column(db.Text, nullable=False)
     score = db.Column(db.Integer, nullable=False, default=0)
