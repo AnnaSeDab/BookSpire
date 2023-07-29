@@ -17,7 +17,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fa-solid fa-comment-dots prefix brown-text text-darken-4"></i>
-                <textarea id="review_text" name="review_text" type="text" class="materialize-textarea validate" required>
+                <textarea id="review_text" name="review_text" minlength="50" type="text" class="materialize-textarea validate" required>
                 {{- review.review_text -}}
                 </textarea>
                 <label for="review_text"></label>
