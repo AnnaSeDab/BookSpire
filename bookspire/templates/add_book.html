@@ -8,21 +8,21 @@
         <!-- book title -->
         <div class="row">
             <div class="input-field col s12">
-                <input id="title" name="title" minlength="5" maxlength="50" type="text" class="validate" required>
+                <input id="title" name="title" minlength="1" type="text" class="validate" required>
                 <label for="title">Title</label>
             </div>
         </div>
         <!-- author -->
         <div class="row">
             <div class="input-field col s12">
-                <input id="author" name="author" minlength="5" maxlength="20" type="text" class="validate" required>
+                <input id="author" name="author" minlength="1" type="text" class="validate" required>
                 <label for="author">Author</label>
             </div>
         </div>
         <!-- year of publication -->
         <div class="row">
             <div class="input-field col s12">
-                <input id="year_of_publication" pattern="[0-9]{4}" name="year_of_publication" minlength="4" maxlength="4" type="text" class="validate" required>
+                <input id="year_of_publication" pattern="[0-2][0-9][0-9][0-9]" name="year_of_publication" type="text" title="Enter a four digits starting with 0, 1 or 2" class="validate" required>
                 <label for="year_of_publication">Year of Publication</label>
             </div>
         </div>
@@ -50,7 +50,7 @@
         <!-- link to cover -->
         <div class="row">
             <div class="input-field col s12">
-                <input id="cover" name="cover" type="text" class="validate" pattern="https?://.+" title="it needs to start with http:// or https://" required>
+                <input id="cover" name="cover" type="text" class="validate" pattern="https?://.+" title="link needs to start with http:// or https://" required>
                 <label for="cover">Link to cover</label>
             </div>
         </div>
