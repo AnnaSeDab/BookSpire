@@ -213,55 +213,188 @@ Python code was validated with no problems through Pep8CI
 ![Pep8CI validator](bookspire/static/img/Pep8CI_validator.png)
 
 
+
 ### Manual testing
 
 
 All aspects of CRUD functionality and page features were tested.
 
-
-Create
-
+**CREATE**
 
 It is possible to create User, Book and Review.
 To create Book and Review the user has to be logged in.
 Book title needs to be unique so there are no doubled entries.
 Some fields are restricted to certain inputs
-- year of publication - four digits
+- year of publication - four digits - first one being 0, 1 or 2 
 - cover image link needs to start with http:// or https://
 - synopsis must contain at least 200 characters
-User - unique username needs to be provided. Passwords need to be at least 5 characters long.
+- with possibility of title and author name/pseudonym being absolutely anything there is no restriction on maximum length and format, however, it needs to be at least one character long. If that prooves problematic it can be easly changed for example by adding pattern="[a-zA-Z0-9-_.]"
+- review body needs to be at least 50 characters
+- unique username needs to be provided for each new user 
+- passwords need to be at least 5 characters long.
+
+| Test        | Expected outcome | Result |
+| ----------- | ----------- |--------- |
+| **Book** |  | |
+| Create a new book entry using various special characters and letteres including polish, japanese and korean and within restraints of the form: <ul><li>All fields filled in</li><li>Year of publicaton starts with 0, 1 or 2</li><li>Link to cover starts with http:// or https://</li><li>Synopsis has more than 200 characters</li></ul> | New entry for a book created and showing on the main page | Passed |
+| Create a new book entry without a title field filled in | Form does not submit. Request to fill the field pops up. | Passed |
+| Create a new book entry without an author field filled in | Form does not submit. Request to fill the field pops up. | Passed |
+| Create a new book entry without a date Form does not submit. Request to fill the field pops up. | Passed |
+| Create a new book entry with less than 4 digits | Form does not submit. Request to use at least 4 characters pops up. | Passed |
+| Create a new book entry with date starting from a number larger than 2 | Form does not submit. 'Enter a four digits starting with 0, 1 or 2' messsage pops up. | Passed |
+| Create a new book entry without the synopsis | Form does not submit. Request to fill the field pops up. | Passed |
+| Create a new book entry with synopsis having less than 200 characters | Form does not submit. Request to use at least 200 characters pops up | Passed |
+| Create a new book entry without link to cover | Form does not submit. Request to fill the field pops up. | Passed |
+| Create a new book entry with invalid link to cover (not starting with http:// or https://) | Form does not submit. Request for link to start with http:// or https:// pops up  | Passed |
+| **Review** |  | |
+| Create a new review entry using various special characters and letteres including polish, japanese and korean and within restraints of the form: <ul><li>All fields filled in</li><li>body of review is at least 50 characters long</li></ul> | New entry for a book created and showing on the main page.| Passed |
+| Create a new review entry without a headline field filled in | Form does not submit. Request to fill the field pops up. | Passed |
+| Create a new review entry without a review field filled in | Form does not submit. Request to fill the field pops up. | Passed |
+| Create a new review entry with review having less than 50 characters | Form does not submit. Request to use at least 50 characters pops up | Passed |
+| Create a new review entry withouth selecting one of the redio boxes | Form does not submit. Request to select one of teh boxes pops up | Passed |
+| **User** |  | |
+| Create new user with unique username between 3-15 and password minimum 5 characters and consisting of letters and numbers  | Form submits. "Registration successful!"
+"Welcome, {USERNAME}. You are now logged in!" messages shows. | Passed |
+| Create new user with username already taken | Form does not submit. "This username already exists, please try another username." message shows. | Passed |
+| Create new user without username | Form does not submit.  | Passed |
+| Create new user with username longer than 15 characters | Impossible to imput more than 15 characters.  | Passed |
+| Create new user without password | Form does not submit. "Username needs to be between 3-15 characters and consist of letters and numbers only" message can be seen when hoovering over the input field. | Passed |
+| Create new user with password shorter than 5 characters | Form does not submit. Request to use more than 5 characters shows. | Passed |
+| Create new user with password longer than 15 characters | Form does not submit. "Password needs to be between 5-15 characters and consist of letters and numbers only" message pops up. | Passed |
+| Create new user with password consisting of characters other than letters and numbers | Form does not submit. "Password needs to be between 5-15 characters and consist of letters and numbers only" message pops up. | Passed |
 
 
-Read
-
+**READ**
 
 Books and reviews load onto page regardles if user is logged in or not. 
 All the changes made(Add, Edit, Delete) are immediately reflected on the page.
-Books are displayed from the newest to oldest. It is also possible to sort them by the number of positive reviews.
+Books are displayed from the newest to oldest. It is also possible to sort them by the number of positive reviews by clicking on the 'newest first' button or revert sorting to newest to oldest by clicking on the 'newest first' button.
+
+| Test        | Expected outcome | Result |
+| ----------- | ----------- |--------- |
+| View homepage while logged in | All the books are showing. Ones added by the user logged in have edit and delete buttons next to them. | Passed |
+| View homepage while not logged in | All the books are showing. No edit and delete buttons next to them. | Passed |
+| View Book page while logged in | All the reviews are showing. Ones added by the user logged in have edit and delete review buttons next to them. | Passed |
+| View Book page while not logged in | All the books are showing. No edit and delete buttons next to the reviews. | Passed |
+| Click Sort by score button on the main page | Books with the most positive reviews show first. | Passed |
+| Click Newest first button on the main page | Books sorted showing newest to oldest (in terms if when added). | Passed |
 
 
-Update
-
+**UPDATE**
 
 Books and Reviews can be updated but only by the user who created them.
-If someone tries to force their way through an overriding URL the page will throw an error.
+Edit buttons show only by the books added by the logged in user.
+Edit review show only by the reviews added by the logged in user.
+If someone tries to force their way through an overriding URL the page will throw an error (see tests in guarding from forced actions section).
 Forms are pre populated with data.
 When the review is updated its score is deducted (X-1 in case of positive and X-0 in case of negative) then after resubmission it is calculated again. Score stays intact if the edit was not finalised.
-Some fields are restricted to certain inputs
-- year of publication four digits
-- cover image link needs to start with http:// or https://
-- synopsis must contain at least 200 characters
+Some fields are restricted to certain inputs - same as add book/review forms
+
+| Test        | Expected outcome | Result |
+| ----------- | ----------- |--------- |
+| **Book** |  | |
+| Edit a book entry without a title field filled in | Form does not submit. Request to fill the field pops up. | Passed |
+| Edit a book entry without an author field filled in | Form does not submit. Request to fill the field pops up. | Passed |
+| Edit a book entry without a date | Form does not submit. Request to fill the field pops up. | Passed |
+| Edit a book entry with less than 4 digits for date | Form does not submit. 'Enter a four digits starting with 0, 1 or 2' messsage pops up. | Passed |
+| Edit a book entry with date starting from a number larger than 2 | Form does not submit. 'Enter a four digits starting with 0, 1 or 2' messsage pops up. | Passed |
+| Edit a book entry without the synopsis | Form does not submit. Request to fill the field pops up. | Passed |
+| Edit a book entry with synopsis having less than 200 characters | Form does not submit. Request to use at least 200 characters pops up | Passed |
+| Edit a book entry without link to cover | Form does not submit. Request to fill the field pops up. | Passed |
+| Edit a book book entry with invalid link to cover (not starting with http:// or https://) | Form does not submit. Request for link to start with http:// or https:// pops up  | Passed |
+| **Review** |  | |
+| Edit a review entry without a headline field filled in | Form does not submit. Request to fill the field pops up. | Passed |
+| Edit a review entry without a review field filled in | Form does not submit. Request to fill the field pops up. | Passed |
+| Edit a review entry withouth selecting one of the redio boxes | Form does not submit. Request to select one of teh boxes pops up | Passed |
+| Change review score | Score updates both on review page and book page. | Passed |
+| Delete review | Book score updates | Passed |
 
 
-Delete
+**DELETE**
 
-
-Books and Reviews can be deleted but only by the user who created them
-If the books get deleted all the reviews are deleted with them.
-Option to delete user has not been added. This is one of the features a Bookstore would need. Scheema is set up in the way that deletion of user would cause deletion of all the book and reviews added by them.
+Books and Reviews can be deleted but only by the user who created them.
+Delete buttons show only by the books added by the logged in user.
+Delete review show only by the books added by the logged in user.
+If someone tries to delete book they are not an author of page will throw an error (see tests in guarding from forced actions section).
+If the books get deleted all the reviews are deleted with it.
+Option to delete a user has not been added. This is one of the features a Bookstore would need. Scheema is set up in the way that deletion of user would cause deletion of all the books and reviews added by them.
 Delete button is currently not guarded by modal as I was not able to fix the bug.
 
+| Test        | Expected outcome | Result |
+| ----------- | ----------- |--------- |
+| Delete review | Review is deleted. Book score updates | Passed |
+| Delete book | Book is deleted. "Book has been deleted!" message shows. | Passed |
 
+
+**LOGIN**
+
+| Test        | Expected outcome | Result |
+| ----------- | ----------- |--------- |
+| Input existing username and correct password | User gets logged in. "Welcome back, {USERNAME}" message shows. | Passed |
+| Input username that does not exist | Form does not submit. "Incorrect Username and/or Password" message pops up. | Passed |
+| Input wrong password | Form does not submit. "Incorrect Username and/or Password" message pops up. | Passed |
+
+
+**GUARDING FROM FORCED ACTIONS**
+
+While User is not logged in "Log in to add" button takes place of "Add a Book" button on main page.
+Add review button does not show on the book page.
+Edit and Delete buttons show only by the books added by the logged in user.
+Edit and Delete review show only by the books added by the logged in user.
+Forcing URL to add/edit book or review throws an error if user is not logged in or book/review they want to edit was not added by them.
+
+| Test        | Expected outcome | Result |
+| ----------- | ----------- |--------- |
+| Input Username that does not exist | Form does not submit. "Incorrect Username and/or Password" message pops up. | Passed |
+| Input wrong password | Form does not submit. "Incorrect Username and/or Password" message pops up. | Passed |
+| Force /add_book url while not logged in | Error 404 page shows. | Passed |
+| Force /add_review url while not logged in | Error 404 page shows. | Passed |
+| Force /add_review url while logged in | Error 404 page shows. | Passed |
+| Force /edit_book url while not logged in | Error 404 page shows. | Passed |
+| Force /edit_book url while logged in (no book specified)| Error 404 page shows. | Passed |
+| Force /edit_review url while not logged in | Error 404 page shows. | Passed |
+| Force /edit_review url while logged in (no review specified) | Error 404 page shows. | Passed |
+| Force /delete_book url while not logged in | Error 404 page shows. | Passed |
+| Force /delete_book url while logged in (no book specified) | Error 404 page shows. | Passed |
+| Force /delete_review url while not logged in | Error 404 page shows. | Passed |
+| Force /delete_review url while logged in (no review specified) | Error 404 page shows. | Passed |
+| Force /edit_book/11 url while logged in as author of the book entry. | Page with edit book form opens. | Passed |
+| Force /edit_book/11 url while logged in as not the author of the book entry. | Redirected to main page. | Passed |
+| Force /edit_book/11 url while not logged in | Error 404 page shows. | Passed |
+| Force /delete_book/11 url while not logged in | Error 404 page shows. | Passed |
+| Force /delete_book/11 url while logged in as not the author of the book entry. | Redirected to main page. | Passed |
+| Force /delete_book/11 url while logged in s the author of the book entry | Error 404 page shows. | Passed |
+| Force /edit_review/11/12 url while not logged in | Error 404 page shows. | Passed |
+| Force /edit_review/11/12 url while logged in as not the author of the review entry. | Redirected to main page. | Passed |
+| Force /edit_review/11/12 url while logged in as the author of the review entry | Error 404 page shows. | Passed |
+| Force /delete_review/11/12 url while not logged in | Error 404 page shows. | Passed |
+| Force /delete_review/11/12 url while logged in as not the author of the review entry. | Redirected to main page. | Passed |
+| Force /delete_review/11/12 url while logged in s the author of the review entry | Error 404 page shows. | Passed |
+
+
+**NAVIGATION**
+
+| Test        | Expected outcome | Result |
+| ----------- | ----------- |--------- |
+| Click on the Logo from any page | Homepage | Passed |
+| Click "Home" navigation button from any page (wile logged in)| Homepage loads | Passed |
+| Click "Home" navigation button from any page (wile not logged in)| Homepage loads | Passed |
+| Click "Log out" button from any page (visible while logged in) | User gets logged out. "You have been logged out." message shows. | Passed |
+| Click "Log" in navigation button from any page (visible wile not logged in) | Log_in page loads | Passed |
+| Click "Register" navigation button from any page (visible wile not logged in) | Register page loads | Passed |
+| Click "Log in" at the bottom of Register page | Log_in page loads | Passed |
+| Click "Register now" at the bottom of the Login page | Register page loads | Passed |
+| Click on "Add a book "button on the main page (while logged in) | Add_book page loads | Passed |
+| Click on "Edit a book "button on the main page (while logged in as user who added it) | Edit_book page loads | Passed |
+| Click on "Delete a book "button on the main page (while logged in as user who added it) | Book gets deleted. "Book has been deleted!" message shows. | Passed |
+| Click on "Log in to add" button on the main page (while not logged in) | Log_in page loads| Passed |
+| Click on on a title of any book (while logged in as user who added it) | Book page opens | Passed |
+| Click on on a title of any book (while logged in as a user who did not add it) | Book page opens | Passed |
+| Click on on a title of any book (while not logged in) | Book page opens | Passed |
+| Click on "Add review" button on book page (while logged in as a user who added the book) | Add_review page opens | Passed |
+| Click on "Add review" button on book page (while logged in as a user who didn't add the book) | Add_review page opens | Passed |
+| Click on "Edit review" button on book page (while logged in as a user who added it) | Add_review page opens | Passed |
+| Click on "Delete review" button on book page (while logged in as a user who added it) | Review gets deleted. "Review has been deleted!" message shows. | Passed |
 
 
 ### Bugs
@@ -269,8 +402,6 @@ Delete button is currently not guarded by modal as I was not able to fix the bug
 
 Modal adding extra layer of security over delete button:
 The modal would not load book.id/review.id correctly. Books/reviews are displayed using the for loop and modal would take the id of the first object of the loop rather than the one that was clicked.
-
-
 
 
 ## Deployment
@@ -313,10 +444,6 @@ db.create_all()
 
 
 Page and database are ready to use.
-
-
-
-
 
 
 ## Credits
